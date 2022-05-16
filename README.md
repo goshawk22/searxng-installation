@@ -26,7 +26,7 @@ sudo apt upgrade -y
 Now install some packages that we'll need later on
 
 ```
-sudo apt install git nginx
+sudo apt install git nginx -y
 ```
 
 ### Open http and https ports
@@ -53,10 +53,10 @@ Now everything should be ready to install SearXNG.
 
 ### Configuring Domain DNS Settings
 
-To use your own DNS with SearXNG, you need to configure it's DNS settings to point to your instance's IP address.
-Find your instance's IP address from your cloud provider's console.
-Create a new DNS record, type A, with name searx, that points to your instance's IP.
-This means that searx.example.com will direct traffic to your instance.
+To use your own DNS with SearXNG, you need to configure it's DNS settings to point to your instance's IP address.\
+Find your instance's IP address from your cloud provider's console.\
+Create a new DNS record, type A, with name searx, that points to your instance's IP.\
+This means that searx.example.com will direct traffic to your instance.\
 
 ## Starting the installation
 
@@ -74,8 +74,7 @@ cd searxng
 
 ### Run the installation scripts
 
-In this section, we'll use the automated installation scripts to install all the parts needed by SearXNG.
-
+In this section, we'll use the automated installation scripts to install all the parts needed by SearXNG.\
 Press enter every time it asks for a prompt - this will select the default options which should work.
 
 ```
@@ -97,7 +96,7 @@ You should see `active (running)` if it's working.
 
 ### Configure Nginx
 
-Here we will create an Nginx configuration file for SearXNG.
+Here we will create an Nginx configuration file for SearXNG.\
 We'll delete the default site and setup SearXNG.
 
 ```
@@ -128,21 +127,21 @@ sudo apt install python3-certbot-nginx
 sudo certbot --nginx
 ```
 
-Follow the instructions provided, making sure to enter a valid email.
+Follow the instructions provided, making sure to enter a valid email.\
 When it asks if you want it to configure Nginx to redirect all http connections to https, select yes as this will set everything up for you!
 
 Now you should be able open searx.example.com (replacing example.com with your domain) in your browser to use your SearXNG instance.
 
 ## Configuring SearXNG
 
-You can change settings to do with your instances by editing the `/etc/searxng/settings.yml` file.
-By default this has very little in there and you'll have to add entries yourself.
+You can change settings to do with your instances by editing the `/etc/searxng/settings.yml` file.\
+By default this has very little in there and you'll have to add entries yourself.\
 The default example can be found [here](https://github.com/searxng/searxng/blob/master/searx/settings.yml). Simply replace your settings.yml with this one to make changing settings easier.
 
 ## Notes on Filtron
 
-Filtron is an application firewall that can protect your instance from bots and IPs that are misusing it, potentially damaging performance for legitimate users.
-However sometimes it can prevent legitimate users from accessing it, perhaps because they are using it a lot.
-It is possible to change the filtron configuration settings to increase, or even disable, limits.
+Filtron is an application firewall that can protect your instance from bots and IPs that are misusing it, potentially damaging performance for legitimate users.\
+However sometimes it can prevent legitimate users from accessing it, perhaps because they are using it a lot.\
+It is possible to change the filtron configuration settings to increase, or even disable, limits.\
 The configuration file can be found at `/etc/filtron/rules.json`
 
