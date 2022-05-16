@@ -145,3 +145,6 @@ However sometimes it can prevent legitimate users from accessing it, perhaps bec
 It is possible to change the filtron configuration settings to increase, or even disable, limits.\
 The configuration file can be found at `/etc/filtron/rules.json`
 
+## Notes on searxng-custom.conf
+
+This is my personal Nginx configuration which has HTTPS enabled along with some other security stuff
