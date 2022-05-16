@@ -21,7 +21,7 @@ Once you've set up the instance, SSH in and update the software.
 ```
 sudo apt update
 sudo apt upgrade -y
-````
+```
 
 Now install some packages that we'll need later on
 
@@ -128,7 +128,7 @@ sudo certbot --nginx
 ```
 
 Follow the instructions provided, making sure to enter a valid email.\
-When it asks if you want it to configure Nginx to redirect all http connections to https, select yes as this will set everything up for you!
+When it asks if you want it to configure Nginx to redirect all http connections to https, select option 2 to redirect as this will set everything up for you!
 
 Now you should be able open searx.example.com (replacing example.com with your domain) in your browser to use your SearXNG instance.
 
