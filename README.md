@@ -40,8 +40,8 @@ More information for how to do this for other cloud providers can be found on th
 Now we'll allow traffic using the firewalls on Ubuntu.
 
 ```
-sudo iptables -I INPUT 6 -m state --state NEW -p tcp --dport 80 -j ACCEPT
-sudo iptables -I INPUT 6 -m state --state NEW -p tcp --dport 443 -j ACCEPT
+sudo iptables -I INPUT -m state --state NEW -p tcp --dport 80 -j ACCEPT
+sudo iptables -I INPUT -m state --state NEW -p tcp --dport 443 -j ACCEPT
 sudo netfilter-persistent save
 
 
@@ -77,22 +77,13 @@ cd searxng
 In this section, we'll use the automated installation scripts to install all the parts needed by SearXNG.\
 Press enter every time it asks for a prompt - this will select the default options which should work.
 
+Note that you should use a sudoer login to run the scripts, not the root user.
+
 ```
-sudo -H ./utils/searx.sh install all
-sudo -H ./utils/filtron.sh install all
-sudo -H ./utils/morty.sh install all
+sudo -H ./utils/searxng.sh install all
 ```
 
 Ignore any messages about Nginx tests failing - we'll fix these later.
-
-Check that both Filtron and Morty are running correctly
-
-```
-sudo systemctl status filtron
-sudo systemctl status morty
-```
-
-You should see `active (running)` if it's working.
 
 ### Configure Nginx
 
@@ -115,7 +106,7 @@ Restart Nginx and SearXNG
 
 ```
 sudo -H systemctl restart nginx
-sudo -H service uwsgi restart searx
+sudo -H service uwsgi restart searxng
 ```
 
 ### Configure SSL Certificate with certbot
@@ -137,13 +128,6 @@ Now you should be able open searx.example.com (replacing example.com with your d
 You can change settings to do with your instances by editing the `/etc/searxng/settings.yml` file.\
 By default this has very little in there and you'll have to add entries yourself.\
 The default example can be found [here](https://github.com/searxng/searxng/blob/master/searx/settings.yml). Simply replace your settings.yml with this one to make changing settings easier.
-
-## Notes on Filtron
-
-Filtron is an application firewall that can protect your instance from bots and IPs that are misusing it, potentially damaging performance for legitimate users.\
-However sometimes it can prevent legitimate users from accessing it, perhaps because they are using it a lot.\
-It is possible to change the filtron configuration settings to increase, or even disable, limits.\
-The configuration file can be found at `/etc/filtron/rules.json`
 
 ## Notes on searxng-custom.conf
 
