@@ -132,3 +132,17 @@ The default example can be found [here](https://github.com/searxng/searxng/blob/
 ## Notes on searxng-custom.conf
 
 This is my personal Nginx configuration which has HTTPS enabled along with some other security stuff
+
+## How to update
+Fetch the latest changes from the github repository and then update using the provided script.
+```
+cd ~/searxng
+git pull
+sudo -H ./utils/searxng.sh instance update
+```
+
+## Renewing cerbot certificates
+Certificates generated using certbot are only valid for around 90 days. You should get an email before the expire reminding you to update them.
+```
+sudo certbot renew
+```
